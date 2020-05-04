@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo "================================================"
+echo "Was möchten Sie tun?"
+echo "================================================"
+echo "1.)VM starten"
+echo "2.)VM beenden"
+echo "3.)Alle VM's anzeigen"
+echo "4.)Arbeit VM's starten"
+echo "5.)Arbeit VM's beenden"
+read eingabe
+
+if [ $eingabe == 1 ]
+then 
+	echo "Welche VM möchten Sie starten?"
+	VBoxManage list vms
+	read vmname
+	VBoxManage startvm "$vmname" -type headless
+	clear
+	echo "VM wurde gestartet"
+elif [ $eingabe == 2 ]
+then
+	echo "Welche VM möchten Sie beenden?"
+	VBoxManage list runningvms
+	read vmname
+	VBoxManage controlvm "$vmname" acpipowerbutton
+	clear
+	echo "VM wurde heruntergefahren"
+elif [ $eingabe == 3 ]
+then
+		VBoxManage list vms
+elif [ $eingabe == 4 ]
+then
+	VBoxManage startvm "Live System Gerd Seitz" -type headless
+	VBoxManage startvm "UbuntuServer" -type headless
+	clear
+	echo "Alle nötigen VM's wurden gestartet"
+elif [ $eingabe == 5 ]
+then
+	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
+	VBoxManage controlvm "UbuntuServer" acpipowerbutton 
+	clear
+	echo "Alle nötigen VM's wurden gestartet"
+fi
