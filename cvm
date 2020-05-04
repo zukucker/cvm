@@ -40,5 +40,5 @@ then
 	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
 	VBoxManage controlvm "UbuntuServer" acpipowerbutton 
 	clear
-	echo "Alle nötigen VM's wurden gestartet"
+	echo "Alle nötigen VM's wurden beendet"
 fi
