@@ -6,8 +6,10 @@ echo "================================================"
 echo "1.)VM starten"
 echo "2.)VM beenden"
 echo "3.)Alle VM's anzeigen"
+echo "================================================"
 echo "4.)Arbeit VM's starten"
 echo "5.)Arbeit VM's beenden"
+echo "================================================"
 read eingabe
 
 if [ $eingabe == 1 ]
