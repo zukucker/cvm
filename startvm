@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "================================================"
+echo "Was möchten Sie tun?"
+echo "================================================"
+echo "1.)VM's starten"
+echo "2.)VM's beenden"
+read eingabe
+
+if [ $eingabe == 1 ]
+then 
+	VBoxManage startvm "UbuntuServer" -type headless
+	VBoxManage startvm "Live System Gerd Seitz" -type headless
+elif [ $eingabe == 2 ]
+then
+	VBoxManage controlvm "UbuntuServer" acpipowerbutton
+	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
+fi
