@@ -1,6 +1,7 @@
 #!/bin/bash
 test=$(vboxmanage list runningvms);
-
+echo "[                   Running                    ]"
+echo "================================================"
 if [[ $test == *"a9b5a01f"* ]]
 then
 		echo "Live System Gerd Seitz 👍";
@@ -10,12 +11,12 @@ fi
 
 if [[ $test == *"034d4d5"* ]]
 then
-	echo "UbuntuServer 👍";
+		echo "UbuntuServer 👍";
 else
 		echo "UbuntuServer 👎";
 fi
 echo "================================================"
-echo "Was möchten Sie tun?"
+echo "[              Was möchten Sie tun             ]"
 echo "================================================"
 echo "1.)VM starten"
 echo "2.)VM beenden"
