@@ -1,5 +1,19 @@
 #!/bin/bash
+test=$(vboxmanage list runningvms);
 
+if [[ $test == *"a9b5a01f"* ]]
+then
+		echo "Live System Gerd Seitz 👍";
+else
+		echo "Live System Gerd Seitz 👎";
+fi
+
+if [[ $test == *"034d4d5"* ]]
+then
+	echo "UbuntuServer 👍";
+else
+		echo "UbuntuServer 👎";
+fi
 echo "================================================"
 echo "Was möchten Sie tun?"
 echo "================================================"
@@ -37,6 +51,21 @@ then
 	VBoxManage startvm "UbuntuServer" -type headless
 	clear
 	echo "Alle nötigen VM's wurden gestartet"
+test=$(vboxmanage list runningvms);
+
+if [[ $test == *"a9b5a01f"* ]]
+then
+		echo "Live System Gerd Seitz 👍";
+else
+		echo "Live System Gerd Seitz 👎";
+fi
+
+if [[ $test == *"034d4d5"* ]]
+then
+	echo "UbuntuServer 👍";
+else
+		echo "UbuntuServer 👎";
+fi
 elif [ $eingabe == 5 ]
 then
 	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
