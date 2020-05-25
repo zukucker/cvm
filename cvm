@@ -1,21 +1,17 @@
 #!/bin/bash
-test=$(vboxmanage list runningvms);
+
 echo "[                   Running                    ]"
 echo "================================================"
-if [[ $test == *"a9b5a01f"* ]]
-then
-		echo "Live System Gerd Seitz 👍";
-else
-		echo "Live System Gerd Seitz 👎";
-fi
 
-if [[ $test == *"034d4d5"* ]]
-then
-		echo "UbuntuServer 👍";
-else
-		echo "UbuntuServer 👎";
-fi
-echo "================================================"
+vboxmanage list runningvms | grep -o '"[^"]\+"' > .runningvms;
+
+input=".runningvms"
+
+while IFS= read -r line
+do
+  echo "$line 👍"
+done < "$input"
+
 echo "[              Was möchten Sie tun             ]"
 echo "================================================"
 echo "1.)VM starten"
@@ -30,7 +26,7 @@ read eingabe
 if [ $eingabe == 1 ]
 then 
 	echo "Welche VM möchten Sie starten?"
-	VBoxManage list vms
+	VBoxManage list vms | grep -o '"[^"]\+"'
 	read vmname
 	VBoxManage startvm "$vmname" -type headless
 	clear
@@ -38,35 +34,21 @@ then
 elif [ $eingabe == 2 ]
 then
 	echo "Welche VM möchten Sie beenden?"
-	VBoxManage list runningvms
+	VBoxManage list runningvms | grep -o '"[^"]\+"'
 	read vmname
 	VBoxManage controlvm "$vmname" acpipowerbutton
 	clear
 	echo "VM wurde heruntergefahren"
 elif [ $eingabe == 3 ]
 then
-		VBoxManage list vms
+		VBoxManage list vms | grep -o '"[^"]\+"'
 elif [ $eingabe == 4 ]
 then
 	VBoxManage startvm "Live System Gerd Seitz" -type headless
 	VBoxManage startvm "UbuntuServer" -type headless
 	clear
 	echo "Alle nötigen VM's wurden gestartet"
-test=$(vboxmanage list runningvms);
 
-if [[ $test == *"a9b5a01f"* ]]
-then
-		echo "Live System Gerd Seitz 👍";
-else
-		echo "Live System Gerd Seitz 👎";
-fi
-
-if [[ $test == *"034d4d5"* ]]
-then
-	echo "UbuntuServer 👍";
-else
-		echo "UbuntuServer 👎";
-fi
 elif [ $eingabe == 5 ]
 then
 	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
