@@ -33,6 +33,7 @@ then
 	VBoxManage startvm "$vmname" -type headless
 	clear
 	echo "VM wurde gestartet"
+  showRunning
 elif [ $eingabe == 2 ]
 then
 	echo "Welche VM möchten Sie beenden?"
@@ -41,6 +42,8 @@ then
 	VBoxManage controlvm "$vmname" acpipowerbutton
 	clear
 	echo "VM wurde heruntergefahren"
+  sleep 10
+  showRunning
 elif [ $eingabe == 3 ]
 then
 		VBoxManage list vms | grep -o '"[^"]\+"'
