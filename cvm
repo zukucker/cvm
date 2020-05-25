@@ -1,5 +1,5 @@
 #!/bin/bash
-
+showRunning() {
 echo "[                   Running                    ]"
 echo "================================================"
 
@@ -12,6 +12,8 @@ do
   echo "$line 👍"
 done < "$input"
 
+}
+showRunning
 echo "[              Was möchten Sie tun             ]"
 echo "================================================"
 echo "1.)VM starten"
@@ -48,7 +50,7 @@ then
 	VBoxManage startvm "UbuntuServer" -type headless
 	clear
 	echo "Alle nötigen VM's wurden gestartet"
-
+  showRunning
 elif [ $eingabe == 5 ]
 then
 	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
