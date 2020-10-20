@@ -13,6 +13,8 @@ do
 done < "$input"
 
 }
+
+showMenu(){
 showRunning
 echo "[              Was möchten Sie tun             ]"
 echo "================================================"
@@ -25,6 +27,7 @@ echo "5.)Arbeit VM's beenden"
 echo "================================================"
 read eingabe
 
+
 if [ $eingabe == 1 ]
 then 
 	echo "Welche VM möchten Sie starten?"
@@ -33,7 +36,8 @@ then
 	VBoxManage startvm "$vmname" -type headless
 	clear
 	echo "VM wurde gestartet"
-  showRunning
+	sleep 2
+  showMenu
 elif [ $eingabe == 2 ]
 then
 	echo "Welche VM möchten Sie beenden?"
@@ -42,22 +46,26 @@ then
 	VBoxManage controlvm "$vmname" acpipowerbutton
 	clear
 	echo "VM wurde heruntergefahren"
-  sleep 10
-  showRunning
+  sleep 5
+  showMenu
 elif [ $eingabe == 3 ]
 then
 		VBoxManage list vms | grep -o '"[^"]\+"'
+		sleep 5
+		clear
+		showMenu
 elif [ $eingabe == 4 ]
 then
 	VBoxManage startvm "Live System Gerd Seitz" -type headless
-	VBoxManage startvm "UbuntuServer" -type headless
 	clear
-	echo "Alle nötigen VM's wurden gestartet"
-  showRunning
+	echo "Alle nötigen VM's wurden gestartet 👍️"
+	sleep 2
+	showMenu
 elif [ $eingabe == 5 ]
 then
 	VBoxManage controlvm "Live System Gerd Seitz" acpipowerbutton
-	VBoxManage controlvm "UbuntuServer" acpipowerbutton 
 	clear
-	echo "Alle nötigen VM's wurden beendet"
+	echo "Alle nötigen VM's wurden beendet 👍️"
 fi
+}
+showMenu
